@@ -1,8 +1,7 @@
 <template>
   <h2>人员信息</h2>
-  <h3 v-show="person.name">姓名:{{ person.name }}</h3>
+  <h3>姓名:{{ person.name }}</h3>
   <h3>年龄:{{ person.age }}</h3>
-  <h3 v-show="person.sex">性别:{{ person.sex }}</h3>
   <h3>工作种类:{{ person.job.type }}</h3>
   <h3>工作薪水:{{ person.job.salary }}</h3>
   <hr/>
@@ -10,14 +9,8 @@
   <h3>测试数据</h3>
   <h4>c的值{{ person.a.b.c }}:</h4>
   <h4>数组: {{ person.course }}</h4>
-  <hr/>
+  <h4></h4>
   <button @click="updateInfo">点击修改信息</button>
-  <br>
-  <button @click="addSex">person对象添加一个属性sex</button>
-  <br>
-  <button @click="deleteName">person对象删除一个属性name</button>
-  <br>
-  <button @click="updateArrVal">修改数组元素中最后一个元素值为boot</button>
 </template>
 
 <script>
@@ -48,6 +41,9 @@ export default {
     // 定义方法
     function updateInfo(){
 
+      // console.log('@@@',person);
+      
+
       person.name = 'Jerry'
       person.age = 28
 
@@ -64,29 +60,10 @@ export default {
 
     }
 
-    function addSex(){
-      // 为person对象添加一个属性sex
-      person.sex = '男'
-    }
-
-    function deleteName(){
-      // 从person对象删除一个属性name
-      delete person.name
-    }
-
-    function updateArrVal(){
-      // 直接通过索引下标的形式 修改值
-      person.course[person.course.length-1] = 'Boot'
-    }
-
-
     // 返回一个对象(常用)
     return {
       person,
-      updateInfo,
-      addSex,
-      deleteName,
-      updateArrVal
+      updateInfo
     }
   }
 }
