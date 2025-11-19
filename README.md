@@ -118,3 +118,17 @@
 
   - ref定义的数据：操作数据时需要`.value`,读取数据时模板中直接读取即可
   - reactive定义的数据：操作数据和读取数据时，均不需要`.value`
+
+#### 6、setup的两个注意点
+- setup执行的时机:
+  
+  - 在beforeCreate之前执行一次，this当前是undefined。
+
+- setup的参数：
+
+  - props：值为对象，包含组件外部传递过来，且组件内部声明了接收的属性
+  - context：上下文对象
+    
+    - attrs: 值为对象，包含组件外部传递过来，但没有在props配置中声明的属性，相当于`this.$attrs`
+    - slots: 收到的插槽内容，相当于`this.$slots`
+    - emit: 用于分发自定义事件的函数，相当于`this.$emit`
