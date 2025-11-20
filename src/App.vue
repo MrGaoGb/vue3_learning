@@ -1,93 +1,17 @@
 <template>
-  <h2>人员信息</h2>
-  <h3 v-show="person.name">姓名:{{ person.name }}</h3>
-  <h3>年龄:{{ person.age }}</h3>
-  <h3 v-show="person.sex">性别:{{ person.sex }}</h3>
-  <h3>工作种类:{{ person.job.type }}</h3>
-  <h3>工作薪水:{{ person.job.salary }}</h3>
-  <hr/>
-  <!-- 测试数据 -->
-  <h3>测试数据</h3>
-  <h4>c的值{{ person.a.b.c }}:</h4>
-  <h4>数组: {{ person.course }}</h4>
-  <hr/>
-  <button @click="updateInfo">点击修改信息</button>
-  <br>
-  <button @click="addSex">person对象添加一个属性sex</button>
-  <br>
-  <button @click="deleteName">person对象删除一个属性name</button>
-  <br>
-  <button @click="updateArrVal">修改数组元素中最后一个元素值为boot</button>
+ <h1>APP组件</h1>
+
+ <!-- 引入自定义组件 -->
+ <Demo></Demo>
 </template>
 
 <script>
-
-// 引入ref函数
-import {reactive} from 'vue'
+import Demo from './components/Demo'
 
 export default {
   name: 'App',
-  setup(props) {
-
-    // reactive函数只能处理对象类型的数据 不能处理基本类型数据
-    let person = reactive({
-      name:'Tom',
-      age:18,
-      job: {
-        type:'Java后端',
-        salary:'25K'
-      },
-      a:{
-        b:{
-          c: 666
-        }
-      },
-      course:['Spring','SpringBoot','SpringCloud']// 课程
-    })
-
-    // 定义方法
-    function updateInfo(){
-
-      person.name = 'Jerry'
-      person.age = 28
-
-      // 操作: 对象属性
-      person.job.type = 'UI'
-      person.job.salary = '60k'
-
-      // 操作: 嵌套对象内的属性
-      person.a.b.c = 999
-
-      // 操作: 数组
-      person.course[1] = 'SpringSecurity'
-
-
-    }
-
-    function addSex(){
-      // 为person对象添加一个属性sex
-      person.sex = '男'
-    }
-
-    function deleteName(){
-      // 从person对象删除一个属性name
-      delete person.name
-    }
-
-    function updateArrVal(){
-      // 直接通过索引下标的形式 修改值
-      person.course[person.course.length-1] = 'Boot'
-    }
-
-
-    // 返回一个对象(常用)
-    return {
-      person,
-      updateInfo,
-      addSex,
-      deleteName,
-      updateArrVal
-    }
+  components:{
+    Demo
   }
 }
 </script>
