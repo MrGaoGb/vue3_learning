@@ -16,7 +16,7 @@
 <script>
 
 // 引入ref函数
-import {ref,watch,reactive,watchEffect} from 'vue'
+import {ref,watch,reactive} from 'vue'
 
 export default {
   name: 'Demo',
@@ -26,7 +26,7 @@ export default {
     let msg = ref('tom')
 
     // 此处对象person也使用ref
-    let person = reactive({
+    let person = ref({
       name:'张三',
       age:18,
       job:{
@@ -36,19 +36,16 @@ export default {
       }
     })
 
-    // 监视
+    // 监视sum属性(watch实际监视的RefImpl对象)
     watch(sum,(newValue,oldValue) => {
       console.log('sum值变了',newValue,oldValue);
+      
     })
 
-    watchEffect((a,b,c) => {
-      console.log('watchEffect指定的回调执行了',a,b,c);
-      sum.value
-      msg.value
-      person.name
-      person.age
-      person.job.j1.salary
-    })
+    // 监视person对象(在使用ref的前提下)
+    watch(person,(newValue,oldValue) => {
+      console.log('person中某个内部属性的值变了',newValue,oldValue);
+    },{deep:true})// 开启深度监视配置
 
 
     return {
