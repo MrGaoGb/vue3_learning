@@ -278,3 +278,23 @@ setup(props,context) {
       person.job.j1.salary
     })
   ```
+
+#### 8、自定义hook函数
+- 什么是hook?  本质是一个函数，把setup函数中使用的Composition API进行了封装
+- 类似于vue2.x中的mixin
+- 自定义hook的优势：复用代码，让setup中的逻辑更清楚易懂
+
+#### 9、toRef和toRefs函数
+- 作用：创建一个 ref 对象，其value值指向一个对象中的某个属性
+- 语法：`const name = toRef(person,'name')`
+- 引用：要将响应式对象中的某个属性单独提供给外部使用时
+- 扩展：`toRef` 与 `toRefs`功能一致，但可以批量创建多个ref对象，语法：`toRefs(person)`
+
+### 其他 Composition API
+#### 1、shallowReactive 与 shallowRef
+- shallowReactive：只处理对象最外层属性的响应式(浅响应式)
+- shallowRef：只处理基本数据类型响应式，不进行对象的响应式处理(浅响应式)
+- 什么时候使用?
+  
+  - 如果有一个对象数据，结构比较深，但变化时只是外层属性变化，使用 shallowReactive
+  - 如果有一个对象数据，后续功能不会修改对象中的属性，而是生成新的对象来替换，使用 shallowRef
