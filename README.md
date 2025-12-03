@@ -316,3 +316,44 @@ setup(props,context) {
   - 使用场景：
     - 1、有些值不应被设置为响应式的，例如复杂的第三方类库
     - 2、当渲染具有不可变数据源的大列表时，跳过响应式转换可以提高性能
+
+##### 4、provide与inject
+- 作用：实现祖和后代组件间通信
+- 套路：父组件有一个`provide`选项来提供数据，子组件有一个`inject`选项来使用这些数据
+- 具体写法：
+  
+  - 1、父组件中
+   
+   ```javascript
+   setup(){
+      let car = reactive({
+        name:'奔驰',
+        price:'40W'
+      })
+
+       provide('car',car)// 给后代组件传递数据
+  
+       return {car}
+    }
+   ```
+  - 2、后代组件中
+  
+    ```javascript
+      export default {
+         name:'Son',
+         setup(){
+
+          let car = inject('car')// 子组件接收数据
+
+         return {
+            car
+         }
+      }
+    }
+    ```
+    
+##### 5、响应式数据的判断
+- isRef: 检查一个值是否为`ref`对象
+- isReactive: 检查一个对象是否为`reactive`创建的响应式代理
+- isReadonly: 检查一个对象是否为`readonly`创建的只读代理
+- isProxy: 检查一个对象是否由`reactive`或`readonly`创建的代理
