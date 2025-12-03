@@ -22,7 +22,8 @@
         - Vue2.0配置(data、methods、watch、computed)中可以访问到setup中的属性和方法
         - 但在setup中不能访问Vue2.x配置(data、methods、watch、computed)中的属性和方法
         - 如果存在重名，setup优先
-    - 2、setup不能是一个async函数，因为返回值不再是对象，而是Promise，需要通过then处理
+    - 2、setup不能是一个async函数，因为返回值不再是对象，而是Promise，模板中看不到return对象中的属性。（后期也可以返回一个Promise实例
+        ，但需要Suspense和异步组件的配合）
 ```
 
 ### 2、ref函数
